@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import NavBar from "./components/Boundary/NavBar";
 import "./App.css";
-import LandingPage from "./components/Landing/LandingPage";
 import Footer from "./components/Boundary/Footer";
+import LearnerLandingPage from "./components/Landing/LearnerLandingPage";
+import InstructorLandingPage from "./components/Landing/InstructorLandingPage";
+
 
 function App() {
   return (
     <div className="">
-      <NavBar />
-      <LandingPage />
-      <Footer />
+      <InstructorLandingPage/>
     </div>
   );
 }
+
+
+
 
 export default App;

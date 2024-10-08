@@ -1,46 +1,59 @@
 import React from "react";
 
+//react-icons imports
+import { FaTwitter } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { FaGooglePlusG } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-gray-900 text-white w-full">
-        <div className="w-full py-10 flex  flex-col justify-center items-start px-4 lg:px-20">
-          <div className="justify-start flex flex-col">
-            <ul className="justify-start flex space-x-8 text-sm mb-4">
+      <footer className="bg-[#0C0C0C] text-[#FFFFFF] w-full">
+        <div className="w-full py-10 flex  flex-col justify-center items-start px-10 md:px-20 md:py-20">
+          <div className="justify-start">
+            <ul className="justify-start flex flex-col gap-5 text-sm mb-4 md:flex-row">
               <li>
                 <a href="#" className="hover:underline">
-                  Features
+                  FEATURES
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  Pricing Plans
+                  PRICING PLANS
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  Contacts
+                  CONTACTS
                 </a>
               </li>
             </ul>
           </div>
           <hr className="w-full" />
-          <div className="flex space-x-4 mt-4 justify-center items-center py-4">
-            <div className="text-lg font-bold w-1/2">Startup</div>
-            <div className="text-sm w-3/5">
-              Ready to hit the road? Join us and find the perfect driving
-              instructor near you. Let’s get you driving with confidence!
+
+          <div className="flex flex-col gap-7 justify-between w-full mt-5 md:flex-row md:mt-10 ">
+            <div className="flex flex-col gap-3 w-4/5 md:w-1/2 md:flex-row md:gap-16">
+              <div className="text-2xl font-semibold">Startup</div>
+              <div className="">
+                Join us and find the perfect driving instructor near you. Let's
+                get you driving with confidence!
+              </div>
             </div>
-            <div className="flex space-x-4">
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-facebook"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-google"></i>
-              </a>
+
+            <div className="flex flex-col gap-3 md:flex-row md:gap-7">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms</a>
+              <div className="flex gap-5 mt-2">
+                <a href="#">
+                <FaTwitter />
+                </a>
+                <a href="#">
+                <FaFacebookF />
+                </a>
+                <a href="#">
+                <FaGooglePlusG className="h-5 w-8" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

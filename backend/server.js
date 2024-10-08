@@ -9,10 +9,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // MongoDB connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err) => console.log(err));
 
 // Sample Route
 app.get("/", (req, res) => {
