@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function NavBar() {
   const [sideBar, setSideBar] = useState(false);
+  const location=useLocation()
+  if (location.pathname === '/admin') {
+    return null; // Do not render the landing page navbar if on the /admin route
+  }
 
   return (
     <nav className="h-[100px] bg-white">

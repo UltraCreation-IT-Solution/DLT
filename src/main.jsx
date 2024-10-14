@@ -15,6 +15,7 @@ import LoginModal from "./components/Auth/LoginModal.jsx";
 import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import VerifyCode from "./components/Auth/VerifyCode.jsx";
 import SetNewPassword from "./components/Auth/SetNewPassword.jsx";
+import AdminNavBar from "./components/Boundary/AdminNavBar.jsx";
 
 const Layout = () => {
   const location = useLocation();
@@ -67,6 +68,14 @@ const appRouter = createBrowserRouter([
         path: "/setpassword",
         element: <SetNewPassword />,
       },
+      {
+        path: "/admin",
+        element: <AdminNavBar/>
+      },
+      {
+        path: "/admindashboard",
+        element: <AdminNavBar/>
+      }
     ],
   },
 ]);
