@@ -15,6 +15,7 @@ import LoginModal from "./components/Auth/LoginModal.jsx";
 import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import VerifyCode from "./components/Auth/VerifyCode.jsx";
 import SetNewPassword from "./components/Auth/SetNewPassword.jsx";
+import AdminNavBar from "./components/Boundary/AdminNavBar.jsx";
 import Test from "./Test.jsx";
 import AdminDashboard from "./components/Admin/AdminDashboard.jsx";
 

@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import { FaUser, FaCalendar, FaHome } from "react-icons/fa";
 import { AiFillDashboard } from "react-icons/ai";
+import { SiClockify } from "react-icons/si";
 import { LuLayoutDashboard } from "react-icons/lu";
+import { PiListBulletsBold } from "react-icons/pi";
+import { FaListCheck } from "react-icons/fa6";
+import { HiOutlineChatAlt2 } from "react-icons/hi";
+import { PiNotebookBold } from "react-icons/pi";
+import { IoSettingsOutline } from "react-icons/io5";
+import { BiLogOut } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
 import AllInstructors from "./AllInstructors";
 import AdminQueries from "./AdminQueries";
+import AllStudents from "./AllStudents";
+import Dashboard from "./Dasboard";
+import AllBookings from "./AllBookings";
 
 const AdminDashboard = () => {
   // State management
-  const [activeTab, setActiveTab] = useState("Instructors");
+  const [activeTab, setActiveTab] = useState("Dashboard");
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
@@ -22,7 +31,7 @@ const AdminDashboard = () => {
                 activeTab === "Dashboard" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <AiFillDashboard className="w-5 h-5" />
+              <SiClockify className="w-5 h-5" />
               <span className="hidden md:block">Dashboard</span>
             </button>
             <button
@@ -49,7 +58,7 @@ const AdminDashboard = () => {
                 activeTab === "Bookings" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <FaCalendar className="w-5 h-5" />
+              <PiListBulletsBold className="w-5 h-5" />
               <span className="hidden md:block">Bookings</span>
             </button>
             <button
@@ -58,7 +67,7 @@ const AdminDashboard = () => {
                 activeTab === "Inbox" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <FaCalendar className="w-5 h-5" />
+              <HiOutlineChatAlt2 className="w-5 h-5" />
               <span className="hidden md:block">Inbox</span>
             </button>
             <button
@@ -67,7 +76,7 @@ const AdminDashboard = () => {
                 activeTab === "queries" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <FaHome className="w-5 h-5" />
+              <PiNotebookBold className="w-5 h-5" />
               <span className="hidden md:block">Queries</span>
             </button>
           </div>
@@ -78,7 +87,7 @@ const AdminDashboard = () => {
                 activeTab === "Staff" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <AiFillDashboard className="w-5 h-5" />
+              <FaListCheck className="w-5 h-5" />
               <span className="hidden md:block">Staff & Roles</span>
             </button>
           </div>
@@ -89,7 +98,7 @@ const AdminDashboard = () => {
                 activeTab === "Settings" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <AiFillDashboard className="w-5 h-5" />
+              <IoSettingsOutline className="w-5 h-5" />
               <span className="hidden md:block">Settings</span>
             </button>
             <button
@@ -98,7 +107,7 @@ const AdminDashboard = () => {
                 activeTab === "Logout" ? "bg-secondary-400 text-white" : ""
               }`}
             >
-              <AiFillDashboard className="w-5 h-5" />
+              <BiLogOut className="w-5 h-5" />
               <span className="hidden md:block">Logout</span>
             </button>
           </div>
@@ -107,10 +116,15 @@ const AdminDashboard = () => {
 
       {/* Main Content */}
       <div className="w-[75%] overflow-y-scroll mb-10">
+        {/* dashboard */}
+        {activeTab === "Dashboard" && <Dashboard />}
+        {/* other things on dashboard ----------------------------------------------------------- */}
         {(activeTab === "Home" || activeTab === "Instructors") && (
           <AllInstructors />
         )}
+        {activeTab === "Bookings" && <AllBookings />}
         {activeTab === "queries" && <AdminQueries />}
+        {activeTab === "Students" && <AllStudents />}
       </div>
     </div>
   );

@@ -1,8 +1,73 @@
 import React, { useState } from "react";
-import { FaSearch, FaTh, FaBars } from "react-icons/fa";
+import { FaSearch, FaTh, FaBars, FaFilter, FaCaretDown } from "react-icons/fa";
+import { RxReset } from "react-icons/rx";
 import ReactModal from "react-modal";
 
 const mockData = [
+  {
+    id: 1,
+    name: "Rakesh Mehta",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Pending",
+    date: "2024-10-01",
+  },
+  {
+    id: 2,
+    name: "Ishika Mehta",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Accepted",
+    date: "2024-10-02",
+  },
+  {
+    id: 3,
+    name: "Kunal Sharma",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Pending",
+    date: "2024-10-03",
+  },
+  {
+    id: 4,
+    name: "Rohan Verma",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Rejected",
+    date: "2024-10-03",
+  },
+  {
+    id: 1,
+    name: "Rakesh Mehta",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Pending",
+    date: "2024-10-01",
+  },
+  {
+    id: 2,
+    name: "Ishika Mehta",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Accepted",
+    date: "2024-10-02",
+  },
+  {
+    id: 3,
+    name: "Kunal Sharma",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Pending",
+    date: "2024-10-03",
+  },
+  {
+    id: 4,
+    name: "Rohan Verma",
+    phone: "9876543210",
+    location: "Mumbai",
+    status: "Rejected",
+    date: "2024-10-03",
+  },
   {
     id: 1,
     name: "Rakesh Mehta",
@@ -39,7 +104,7 @@ const mockData = [
 
 const QueriesComponent = () => {
   const [data, setData] = useState(mockData);
-  const [viewType, setViewType] = useState("tile");
+  const [viewMode, setViewMode] = useState("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [dateFilter, setDateFilter] = useState("");
@@ -79,50 +144,56 @@ const QueriesComponent = () => {
       {/* Header and Search Bar */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Queries</h1>
-        <div className="flex items-center space-x-4">
+        <div className="flex gap-4 items-center">
           <button
-            onClick={() => setViewType("tile")}
-            className={`p-2 ${viewType === "tile" ? "bg-gray-200" : ""}`}
+            onClick={() => setViewMode("grid")}
+            className={`p-2 ${
+              viewMode === "grid" ? "bg-blue-500 text-white" : "bg-gray-100"
+            }`}
           >
-            <FaTh />
+            <FaTh className="w-5 h-5" />
           </button>
           <button
-            onClick={() => setViewType("list")}
-            className={`p-2 ${viewType === "list" ? "bg-gray-200" : ""}`}
+            onClick={() => setViewMode("list")}
+            className={`p-2 ${
+              viewMode === "list" ? "bg-blue-500 text-white" : "bg-gray-100"
+            }`}
           >
-            <FaBars />
+            <FaBars className="w-5 h-5" />
           </button>
         </div>
       </div>
 
       {/* Filters Section */}
       <div className="flex space-x-4 justify-between mb-6">
-        <div className="flex items-center bg-white rounded-full px-4 py-2">
+        <div className="flex items-center bg-gray-100 rounded-md px-4 py-2 w-[50%] border border-solid border-neutral-100">
           <FaSearch className="text-gray-500" />
           <input
             type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearch}
-            className="ml-2 bg-transparent focus:outline-none"
+            className="ml-2 bg-transparent focus:outline-none text-neutral-600"
           />
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 text-slate-600">
           <button
             onClick={() => setModalDateOpen(true)}
-            className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 relative"
+            className="p-3 flex gap-1 items-center relative"
           >
+            <FaFilter className="mr-2" />
             {dateFilter ? `Date: ${dateFilter}` : "Date"}
             {dateFilter && (
               <span className="absolute top-0 right-0 p-1 text-xs text-blue-600">
                 Active
               </span>
             )}
+            <FaCaretDown />
           </button>
 
           <button
             onClick={() => setModalStatusOpen(true)}
-            className={`p-3 border rounded-lg ${
+            className={`p-3 rounded-lg ${
               statusFilter === "Pending"
                 ? "text-yellow-700 bg-yellow-100"
                 : statusFilter === "Accepted"
@@ -130,27 +201,30 @@ const QueriesComponent = () => {
                 : statusFilter === "Rejected"
                 ? "text-red-700 bg-red-100"
                 : "text-gray-700 bg-gray-100"
-            } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+            } flex gap-1 items-center bg-white `}
           >
+            {" "}
             Status: {statusFilter}
+            <FaCaretDown />
           </button>
 
-          <button
+          <div
+            className="flex items-center gap-3 text-base text-red-600"
             onClick={resetFilters}
-            className="p-3 text-red-500 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           >
-            Reset Filter
-          </button>
+            <RxReset />
+            <div>Reset Filter</div>
+          </div>
         </div>
       </div>
 
-      {viewType === "tile" ? (
-        <div className="p-6">
-          <div className="w-full flex flex-wrap space-x-4">
+      {viewMode === "grid" ? (
+        <div className="py-6">
+          <div className="w-full flex flex-wrap justify-between space-3 gap-y-4">
             {filteredData.map((query) => (
               <div
                 key={query.id}
-                className="relative border p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 bg-white"
+                className="relative w-[240px] border p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 bg-white"
               >
                 <div className="flex items-center justify-center mb-4">
                   <div className="">
@@ -173,16 +247,16 @@ const QueriesComponent = () => {
                 <div className="text-center">
                   <h2 className="font-bold text-lg mb-2">{query.name}</h2>
                   <div className="text-sm text-gray-600">
-                    <p>
-                      <strong>Query ID:</strong> Q20241015
+                    <p className="flex w-full justify-between mb-2">
+                      <strong>Query ID:</strong> <p>Q20241015</p>
                     </p>
-                    <p>
+                    <p className="flex w-full justify-between mb-2">
                       <strong>Phone:</strong> {query.phone}
                     </p>
-                    <p>
+                    <p className="flex w-full justify-between mb-2">
                       <strong>Location:</strong> {query.location}
                     </p>
-                    <p>
+                    <p className="flex w-full justify-between mb-2">
                       <strong>Status:</strong>{" "}
                       <span
                         className={`${

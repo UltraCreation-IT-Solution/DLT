@@ -46,7 +46,7 @@ const AllInstructors = () => {
       location: "Mumbai",
       availability: "Active",
       experience: "3-5 years",
-      profileImage: "https://randomuser.me/api/portraits/men/1.jpg",
+      profileImage: "https://randomuser.me/api/portraits/men/4.jpg",
     },
     {
       id: 5,
@@ -212,7 +212,7 @@ const AllInstructors = () => {
       {/* Instructor Cards */}
       {viewMode === "grid" ? (
         <div className="p-4 ">
-          <div className="flex flex-wrap justify-between gap-3 min-h-fit max-h-fit">
+          <div className="flex flex-wrap justify-between gap-3 min-h-fit max-h-fit gap-y-6">
             {filteredInstructors.map((instructor) => (
               <div
                 key={instructor.id}
@@ -239,7 +239,7 @@ const AllInstructors = () => {
                   {instructor.name}
                 </h3>
                 <div className="pt-2 w-full font-poppins text-desk-b-3 text-neutral-600">
-                  <p className="text-gray-500 w-full flex justify-between">
+                  <p className="text-gray-500 w-full flex justify-between mb-2">
                     <strong className="font-semibold">Phone: </strong>{" "}
                     <p>{instructor.phone}</p>
                   </p>
@@ -301,7 +301,7 @@ const AllInstructors = () => {
                             : "bg-red-100 text-red-800"
                         }`}
                       >
-                        {instructor.status}
+                        {instructor.availability}
                       </span>
                     </td>
                     <td className="py-3 px-4">
