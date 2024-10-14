@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-    overflow-x: hidden;
+/* Now, you can add your custom styles */
+::-webkit-scrollbar {
+    display: none;
 }
+
+/* Your other custom CSS */
