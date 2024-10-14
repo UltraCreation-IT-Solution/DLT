@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
@@ -41,11 +42,19 @@ function NavBar() {
 
       {/* Side bar */}
       {sideBar && (
-        <div className="h-full w-[350px] fixed right-0 top-0 bg-[#001C51] text-white p-8 lg:hidden ">
-          <RxCrossCircled
-            className="h-10 w-10"
+        <div className="h-full w-[350px] fixed right-0 top-0 bg-white p-8 lg:hidden ">
+          <IoMdClose
+            className="h-5 w-5 text-gray-500"
             onClick={() => setSideBar(false)}/>
-          <div className="w-full flex flex-col gap-5 mt-14 text-xl">
+
+
+            <Link to="/login">
+          <button className="bg-[#FFC10C] hover:bg-yellow-500 rounded-full px-7 py-2 mt-10 font-semibold text-lg">
+            Login
+          </button>
+          </Link>
+
+          <div className="w-full flex flex-col gap-10 mt-14 font-semibold text-xl text-[#1E0E62]">
             <div>
               <a href="#">How it works</a>
             </div>

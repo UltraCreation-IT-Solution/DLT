@@ -3,7 +3,12 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import NavBar from "./components/Boundary/NavBar.jsx";
 import Footer from "./components/Boundary/Footer.jsx";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  useLocation,
+} from "react-router-dom";
 import LearnerLandingPage from "./components/Landing/LearnerLandingPage.jsx";
 import InstructorLandingPage from "./components/Landing/InstructorLandingPage.jsx";
 import LoginModal from "./components/Auth/LoginModal.jsx";
@@ -14,11 +19,19 @@ import Test from "./Test.jsx";
 import AdminDashboard from "./components/Admin/AdminDashboard.jsx";
 
 const Layout = () => {
+  const location = useLocation();
+  const noNavFooterRoutes = [
+    "/login",
+    "/forgotpassword",
+    "/verifycode",
+    "/setpassword",
+  ];
+  const shouldShowNavFooter = !noNavFooterRoutes.includes(location.pathname);
   return (
     <div>
-      <NavBar />
+      {shouldShowNavFooter && <NavBar />}
       <Outlet />
-      <Footer />
+      {shouldShowNavFooter && <Footer />}
     </div>
   );
 };
@@ -67,6 +80,10 @@ const appRouter = createBrowserRouter([
     ],
   },
 ]);
+
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={appRouter} />
+);
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={appRouter} />
