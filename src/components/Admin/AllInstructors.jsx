@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { FaSearch, FaFilter, FaTh, FaBars } from "react-icons/fa";
+import { FaSearch, FaFilter, FaTh, FaBars, FaCaretDown } from "react-icons/fa";
+import { BiReset } from "react-icons/bi";
 
 const AllInstructors = () => {
   const [viewMode, setViewMode] = useState("grid");
@@ -140,44 +141,18 @@ const AllInstructors = () => {
   };
 
   return (
-    <div className="flex-grow bg-gray-100 p-4 overflow-scroll">
-      {/* Header with Search and Filters */}
-      <div className="flex justify-between items-center p-4 bg-white shadow-lg">
-        {/* Search Bar */}
-        <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-          <FaSearch className="text-gray-500" />
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="ml-2 bg-transparent focus:outline-none"
-          />
-        </div>
-
-        {/* Filters and View Mode */}
-        <div className="flex items-center space-x-4">
-          <button
-            className="flex items-center bg-gray-100 px-4 py-2 rounded-full text-gray-700"
-            onClick={() => setIsExperienceModalOpen(true)}
-          >
-            <FaFilter className="mr-2" />
-            Experience
-          </button>
-          <button
-            className="flex items-center bg-gray-100 px-4 py-2 rounded-full text-gray-700"
-            onClick={() => setIsAvailabilityModalOpen(true)}
-          >
-            <FaFilter className="mr-2" />
-            Availability
-          </button>
+    <div className="flex-grow bg-white px-4 py-2 overflow-scroll">
+      {/* heading */}
+      <div className="flex justify-between">
+        <div className="text-desk-h-6 font-sans font-bold">Instructors</div>
+        <div className="flex gap-4 items-center">
           <button
             onClick={() => setViewMode("grid")}
             className={`p-2 ${
               viewMode === "grid" ? "bg-blue-500 text-white" : "bg-gray-100"
             }`}
           >
-            <FaTh />
+            <FaTh className="w-5 h-5" />
           </button>
           <button
             onClick={() => setViewMode("list")}
@@ -185,48 +160,95 @@ const AllInstructors = () => {
               viewMode === "list" ? "bg-blue-500 text-white" : "bg-gray-100"
             }`}
           >
-            <FaBars />
+            <FaBars className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+      {/* Header with Search and Filters */}
+      <div className="flex justify-between items-center py-4 my-3">
+        {/* Search Bar */}
+        <div className="flex items-center bg-gray-100 rounded-md px-4 py-2 w-[50%] border border-solid border-neutral-100">
+          <FaSearch className="text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="ml-2 bg-transparent focus:outline-none text-neutral-600"
+          />
+        </div>
+
+        {/* Filters and View Mode */}
+        <div className="flex items-center gap-4">
+          <button
+            className="flex gap-1 items-center  px-4 py-2"
+            onClick={() => setIsAvailabilityModalOpen(true)}
+          >
+            <FaFilter className="mr-2" />
+            <span className="font-semibold font-poppins text-desk-b-3 text-neutral-600">
+              Availability{" "}
+            </span>
+            <FaCaretDown />
           </button>
           <button
-            onClick={clearFilters}
-            className="bg-red-500 text-white px-4 py-2 rounded-full"
+            className="flex gap-1 items-center  px-4 py-2"
+            onClick={() => setIsExperienceModalOpen(true)}
           >
-            Clear Filters
+            <span className="font-semibold font-poppins text-desk-b-3 text-neutral-600">
+              Experience
+            </span>
+            <FaCaretDown />
+          </button>
+
+          <button
+            onClick={clearFilters}
+            className="text-error-300 px-4 py-2 flex gap-1 items-center"
+          >
+            <BiReset />
+            Reset Filters
           </button>
         </div>
       </div>
       {/* Instructor Cards */}
       {viewMode === "grid" ? (
-        <div className="p-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="p-4 ">
+          <div className="flex flex-wrap justify-between gap-3 min-h-fit max-h-fit">
             {filteredInstructors.map((instructor) => (
               <div
                 key={instructor.id}
-                className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center relative"
+                className="bg-white w-[23%] shadow-md rounded-lg p-4 flex flex-col items-center relative border border-solid border-neutral-100"
               >
                 <div className="">
                   <img
                     src={instructor.profileImage}
                     alt={instructor.name}
-                    className="w-20 h-20 rounded-full object-cover"
+                    className="w-14 h-14 rounded-full object-cover object-center"
                   />
                   {/* Status Indicator */}
                   <span
                     className={`absolute top-2 right-3 w-3 h-3 rounded-full ${
                       instructor.availability === "Active"
-                        ? "bg-green-100 text-green-800"
+                        ? "bg-green-400 text-green-800"
                         : instructor.availability === "onLeave"
-                        ? "bg-yellow-100 text-red-800"
-                        : "bg-red-100 text-red-800"
+                        ? "bg-yellow-400 text-red-800"
+                        : "bg-red-400 text-red-800"
                     }`}
                   ></span>
                 </div>
-                <h3 className="mt-3 font-semibold text-lg">
+                <h3 className="mt-3 font-semibold font-poppins text-desk-b-2 ">
                   {instructor.name}
                 </h3>
-                <p className="text-gray-500">Phone: {instructor.phone}</p>
-                <p className="text-gray-500">Location: {instructor.location}</p>
-                <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg">
+                <div className="pt-2 w-full font-poppins text-desk-b-3 text-neutral-600">
+                  <p className="text-gray-500 w-full flex justify-between">
+                    <strong className="font-semibold">Phone: </strong>{" "}
+                    <p>{instructor.phone}</p>
+                  </p>
+                  <p className="text-gray-500 w-full flex justify-between">
+                    <strong className="font-semibold">Location:</strong>{" "}
+                    <p>{instructor.location}</p>
+                  </p>
+                </div>
+                <button className="w-full mt-4 bg-secondary-400 text-white py-2 px-4 rounded-md">
                   View Profile
                 </button>
               </div>

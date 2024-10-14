@@ -97,7 +97,7 @@ const QueriesComponent = () => {
 
       {/* Filters Section */}
       <div className="flex space-x-4 justify-between mb-6">
-        <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+        <div className="flex items-center bg-white rounded-full px-4 py-2">
           <FaSearch className="text-gray-500" />
           <input
             type="text"
