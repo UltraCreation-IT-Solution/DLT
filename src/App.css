@@ -8,3 +8,7 @@
 }
 
 /* Your other custom CSS */
+html{
+    @apply font-sans;
+    overflow-x: hidden;
+}

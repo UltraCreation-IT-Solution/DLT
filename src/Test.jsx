@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen ">
       {/* Sidebar */}
-      <div className=" bg-gray-800 text-white w-full md:w-[20%] p-4 flex md:flex-col justify-between fixed md:relative bottom-0 md:bottom-auto z-10 md:z-auto">
+      {/* <div className=" bg-gray-800 text-white w-full md:w-[20%] p-4 flex md:flex-col justify-between fixed md:relative bottom-0 md:bottom-auto z-10 md:z-auto">
         <div className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4 w-full justify-around">
           <button
             onClick={() => setActiveTab("Home")}
@@ -37,10 +37,10 @@ const App = () => {
             <span className="hidden md:block">Bookings</span>
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Content */}
-      <div className="w-[75%] overflow-y-scroll">
+      <div className="w-[100%%] overflow-y-scroll">
         <Test2 />
       </div>
     </div>
