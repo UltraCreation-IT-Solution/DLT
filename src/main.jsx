@@ -16,6 +16,7 @@ import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import VerifyCode from "./components/Auth/VerifyCode.jsx";
 import SetNewPassword from "./components/Auth/SetNewPassword.jsx";
 import AdminNavBar from "./components/Boundary/AdminNavBar.jsx";
+import VisitorForm from "./components/PersonalDetails/VisitorForm.jsx";
 
 const Layout = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const Layout = () => {
     "/forgotpassword",
     "/verifycode",
     "/setpassword",
+    "/visitorform"
   ];
   const shouldShowNavFooter = !noNavFooterRoutes.includes(location.pathname);
   return (
@@ -73,9 +75,9 @@ const appRouter = createBrowserRouter([
         element: <AdminNavBar/>
       },
       {
-        path: "/admindashboard",
-        element: <AdminNavBar/>
-      }
+        path: "/visitorform",
+        element: <VisitorForm/>
+      },
     ],
   },
 ]);
